@@ -3,7 +3,8 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:paddingLeft="8dp"
-    android:orientation="vertical">
+    android:orientation="horizontal"
+    android:id="@+id/linear">
 
     <TextView
         android:id="@+id/child"
@@ -11,8 +12,17 @@
         android:layout_height="wrap_content"
         android:textSize="16sp"
         android:text="Contact "
-        android:padding="0.5dp"
-        android:fontFamily="sans-serif-condensed"/>
+        android:padding="15dp"
+        android:fontFamily="sans-serif-condensed"
+       android:layout_weight="0.5" />
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:text="Delete"
+        android:id="@+id/button_delete"
+        android:backgroundTint="@color/colorAccent"
+        />
+
 
 </LinearLayout>
 

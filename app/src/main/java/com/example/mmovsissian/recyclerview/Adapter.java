@@ -11,6 +11,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
+import android.widget.Toast;
 
 
 import com.example.mmovsissian.recyclerview.Child;
@@ -31,7 +33,7 @@ public class Adapter extends SectionRecyclerViewAdapter<Header,Child,Headerholde
 
 
     Context context;
-
+private List<Header> mDataset;
 
 
     public Adapter(Context context, List<Header> sectionHeaderItemList) {
@@ -39,6 +41,8 @@ public class Adapter extends SectionRecyclerViewAdapter<Header,Child,Headerholde
         super(context, sectionHeaderItemList);
 
         this.context = context;
+        LinearLayout linear;
+        mDataset=sectionHeaderItemList;
 
 
     }
@@ -79,9 +83,35 @@ public class Adapter extends SectionRecyclerViewAdapter<Header,Child,Headerholde
 
     @Override
 
-    public void onBindChildViewHolder(Childholder childViewHolder, int sectionPosition, int childPosition, Child child) {
+    public void onBindChildViewHolder(Childholder childViewHolder, final int sectionPosition, final int childPosition, final Child child) {
 
         childViewHolder.name.setText(child.getName());
+        LinearLayout linear;
+
+
+        childViewHolder.name.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Header person = mDataset.get(childPosition);
+                Toast.makeText(context, (CharSequence) person,Toast.LENGTH_SHORT).show();
+            }
+        });
+
+
+
+        childViewHolder.button_delete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Get the clicked item label
+                Header itemLabel = mDataset.get(childPosition);
+
+                // Remove the item on remove/button click
+                mDataset.remove(childPosition);
+                notifyItemRemoved(childPosition);
+                notifyItemChanged(childPosition,mDataset.size());
+                Toast.makeText(context,"Removed  ",Toast.LENGTH_SHORT).show();
+
 
     }
-}
+
+});}}
